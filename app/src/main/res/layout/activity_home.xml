@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:contentDescription="Adicionar nova lista"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="#6200EE"
+        app:backgroundTint="#2196F3"
+        app:tint="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp" />

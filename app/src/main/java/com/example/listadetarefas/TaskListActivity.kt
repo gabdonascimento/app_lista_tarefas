@@ -24,7 +24,7 @@ class TaskListActivity : AppCompatActivity() {
     private lateinit var adapter: TaskItemAdapter     // Adapter customizado para cada item da lista
     private var listTitle: String = ""                // Título da lista (ex: "Compras")
 
-    // Método chamado quando a Activity é criada
+    // Metodo chamado quando a Activity é criada
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_list)  // Define o layout XML específico para essa Activity
