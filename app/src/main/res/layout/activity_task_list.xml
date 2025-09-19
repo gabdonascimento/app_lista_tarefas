@@ -3,20 +3,28 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
 
     <EditText
         android:id="@+id/editTextTask"
         android:hint="Adicione item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:padding="12dp"
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/buttonAdd"
         android:text="Adicionar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#6200EE"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:fontFamily="sans-serif-medium"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTasks"
@@ -30,12 +38,20 @@
         android:text="Salvar Lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2962FF"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:fontFamily="sans-serif-medium"/>
 
     <Button
         android:id="@+id/buttonCancel"
         android:text="Cancelar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#B0BEC5"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:fontFamily="sans-serif-medium"/>
 </LinearLayout>

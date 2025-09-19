@@ -5,6 +5,7 @@ import android.content.Intent             // Para enviar dados de volta à HomeA
 import android.os.Bundle                 // Para receber o estado da Activity
 import android.widget.*                  // EditText, Button, Toast, etc.
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -57,6 +58,10 @@ class TaskListActivity : AppCompatActivity() {
         recyclerViewTasks.layoutManager = LinearLayoutManager(this)
         recyclerViewTasks.adapter = adapter
 
+        // Adiciona linhas entre os itens da lista
+        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        recyclerViewTasks.addItemDecoration(divider)
+
         // Configura o botão "Adicionar"
         buttonAdd.setOnClickListener {
             val task = editTextTask.text.toString()    // Pega o texto digitado no EditText
@@ -66,7 +71,7 @@ class TaskListActivity : AppCompatActivity() {
                 editTextTask.text.clear()              // Limpa o campo para digitar nova tarefa
             } else {
                 // Mostra mensagem na tela se o campo estiver vazio
-                Toast.makeText(this, "Digite uma tarefa!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Digite um item!", Toast.LENGTH_SHORT).show()
             }
         }
 

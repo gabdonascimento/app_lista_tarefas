@@ -1,24 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:padding="8dp"
+    android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="@drawable/line_divider_bottom">
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkBoxTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/textTask"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:paddingStart="8dp"
+        android:textColor="#212121"/>
 
     <ImageButton
         android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_delete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/baseline_delete_24"
         android:contentDescription="Deletar tarefa"/>
 </LinearLayout>
