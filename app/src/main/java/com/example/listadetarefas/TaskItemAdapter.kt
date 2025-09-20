@@ -16,7 +16,6 @@ class TaskItemAdapter(
     // Lista para manter o estado dos checkboxes
     private val checkedStates = MutableList(tasks.size) { false }
 
-    // ViewHolder representa cada item da lista
     class TaskItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textTask: TextView = itemView.findViewById(R.id.textTask)
         val buttonDelete: ImageButton = itemView.findViewById(R.id.buttonDelete)
@@ -30,21 +29,23 @@ class TaskItemAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {
+        // Atualiza o estado do checkbox se necessário
+        if (checkedStates.size < tasks.size) checkedStates.add(false)
+        if (checkedStates.size > tasks.size) checkedStates.removeAt(checkedStates.size - 1)
+
         holder.textTask.text = tasks[position]
 
-        // Remove listener antes de atualizar para evitar comportamento indesejado
+        // Remove listener para evitar loops
         holder.checkBox.setOnCheckedChangeListener(null)
+        holder.checkBox.isChecked = checkedStates[position]
 
-        // Define o estado do checkbox baseado na lista de estados
-        holder.checkBox.isChecked = checkedStates.getOrElse(position) { false }
-
-        // Risca o texto se o checkbox estiver marcado
+        // Risca o texto se estiver marcado
         holder.textTask.paintFlags = if (holder.checkBox.isChecked)
             holder.textTask.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
         else
             holder.textTask.paintFlags and android.graphics.Paint.STRIKE_THRU_TEXT_FLAG.inv()
 
-        // Atualiza o estado do checkbox quando o usuário clica
+        // Atualiza estado do checkbox
         holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
             checkedStates[position] = isChecked
             holder.textTask.paintFlags = if (isChecked)
@@ -53,13 +54,14 @@ class TaskItemAdapter(
                 holder.textTask.paintFlags and android.graphics.Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
 
-        // Botão de deletar tarefa
+        // Botão de deletar item
         holder.buttonDelete.setOnClickListener {
-            tasks.removeAt(position)             // Remove item da lista
-            checkedStates.removeAt(position)     // Remove estado do checkbox correspondente
-            notifyItemRemoved(position)          // Animação de remoção
-            notifyItemRangeChanged(position, tasks.size)  // Atualiza RecyclerView
-            onDeleteClick(position)              // Callback externo, se necessário
+            if (position in tasks.indices) {
+                tasks.removeAt(position)
+                checkedStates.removeAt(position)
+                notifyItemRemoved(position)
+                onDeleteClick(position) // callback externo, só para avisar
+            }
         }
     }
 
